@@ -1,4 +1,4 @@
-This repository contains the replication material for "From Protests to Fatalities: Identifying Dangerous Temporal Patterns in Civil Conflict Transitions".
+This repository contains the replication material for "From Protests to Fatalities: Identifying Dangerous Temporal Patterns in Civil Conflict Transitions" (Hannah Frank and Thomas Chadefaux).
 
 ## Requirements
 - The analysis is run in Python 3.10.13 and R version 4.3.1.
