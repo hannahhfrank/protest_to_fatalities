@@ -125,59 +125,59 @@ plt.subplots_adjust(wspace=0.05)
 # Calculate confidence intervals
 conf=[1.65*(df_linear["mse_ols"].std()/np.sqrt(len(df_linear))),1.65*(df_linear["mse_dols"].std()/np.sqrt(len(df_linear))),1.65*(df_linear["mse_olsx"].std()/np.sqrt(len(df_linear))),1.65*(df_linear["mse_dolsx"].std()/np.sqrt(len(df_linear)))]
 # Plot mean error
-ax1.scatter([0,1,2,3],[df_linear["mse_ols"].mean(),df_linear["mse_dols"].mean(),df_linear["mse_olsx"].mean(),df_linear["mse_dolsx"].mean()],color="black",marker='o',s=50)
+ax1.scatter([0,1,2,3],[df_linear["mse_ols"].mean(),df_linear["mse_dols"].mean(),df_linear["mse_olsx"].mean(),df_linear["mse_dolsx"].mean()],color="black",marker='o',s=80)
 # Plot confidence intervals
-ax1.errorbar([0,1,2,3],[df_linear["mse_ols"].mean(),df_linear["mse_dols"].mean(),df_linear["mse_olsx"].mean(),df_linear["mse_dolsx"].mean()],yerr=conf,color="black",linewidth=1,fmt='none')
+ax1.errorbar([0,1,2,3],[df_linear["mse_ols"].mean(),df_linear["mse_dols"].mean(),df_linear["mse_olsx"].mean(),df_linear["mse_dolsx"].mean()],yerr=conf,color="black",linewidth=2,fmt='none')
+
+# Manually add results for the t-test
+ax1.plot([0,2],[0.025,0.025],linewidth=0.5,color="black")
+ax1.plot([0,0],[0.025,0.0247],linewidth=0.5,color="black")
+ax1.plot([2,2],[0.025,0.0247],linewidth=0.5,color="black")
+ax1.text(0.92, 0.0251, "o", fontsize=12)
+
+ax1.plot([0,1],[0.016,0.016],linewidth=0.5,color="black")
+ax1.plot([0,0],[0.016,0.0163],linewidth=0.5,color="black")
+ax1.plot([1,1],[0.016,0.0163],linewidth=0.5,color="black")
+ax1.text(0.42, 0.0156, "***", fontsize=12)
+
+ax1.plot([2,3],[0.016,0.016],linewidth=0.5,color="black")
+ax1.plot([2,2],[0.016,0.0163],linewidth=0.5,color="black")
+ax1.plot([3,3],[0.016,0.0163],linewidth=0.5,color="black")
+ax1.text(2.42, 0.0156, "***", fontsize=12)
+
 # Add labels and ticks
-ax1.set_ylim(0.0155,0.0255)
-ax1.set_yticks([0.016,0.017,0.018,0.019,0.02,0.021,0.022,0.023,0.024,0.025],[0.016,0.017,0.018,0.019,0.02,0.021,0.022,0.023,0.024,0.025],fontsize=18)
+ax1.set_yticks([0.012,0.014,0.016,0.018,0.02,0.022,0.024,0.026],[0.012,0.014,0.016,0.018,0.02,0.022,0.024,0.026],fontsize=15)
 ax1.set_ylabel("Mean squared error (MSE)",size=22)
-ax1.set_xticks([0,1,2,3],['RR','DRR','RRX','DRRX'],fontsize=18)
+ax1.set_xticks([0,1,2,3],['RR','DRR','RRX','DRRX'],fontsize=15)
 
 # RF in plot 2 # 
 
 # Calculate confidence intervals
 yerrs=[1.65*(df_nonlinear["mse_rf"].std()/np.sqrt(len(df_nonlinear))),1.65*(df_nonlinear["mse_drf"].std()/np.sqrt(len(df_nonlinear))),1.65*(df_nonlinear["mse_rfx"].std()/np.sqrt(len(df_nonlinear))),1.65*(df_nonlinear["mse_drfx"].std()/np.sqrt(len(df_nonlinear)))]
 # Plot mean error
-ax2.scatter([0,1,2,3],[df_nonlinear["mse_rf"].mean(),df_nonlinear["mse_drf"].mean(),df_nonlinear["mse_rfx"].mean(),df_nonlinear["mse_drfx"].mean()], color="black", marker='o',s=50)
+ax2.scatter([0,1,2,3],[df_nonlinear["mse_rf"].mean(),df_nonlinear["mse_drf"].mean(),df_nonlinear["mse_rfx"].mean(),df_nonlinear["mse_drfx"].mean()], color="black", marker='o',s=80)
 # Plot confidence intervals
-ax2.errorbar([0,1,2,3],[df_nonlinear["mse_rf"].mean(),df_nonlinear["mse_drf"].mean(),df_nonlinear["mse_rfx"].mean(),df_nonlinear["mse_drfx"].mean()], yerr=yerrs, color="black", linewidth=1, fmt='none')
+ax2.errorbar([0,1,2,3],[df_nonlinear["mse_rf"].mean(),df_nonlinear["mse_drf"].mean(),df_nonlinear["mse_rfx"].mean(),df_nonlinear["mse_drfx"].mean()], yerr=yerrs, color="black", linewidth=2, fmt='none')
+
+ax2.plot([0,2],[0.0223,0.0223],linewidth=0.5,color="black")
+ax2.plot([0,0],[0.0223,0.022],linewidth=0.5,color="black")
+ax2.plot([2,2],[0.0223,0.022],linewidth=0.5,color="black")
+ax2.text(0.92,0.02225, "***", fontsize=12)
+
+ax2.plot([0,1],[0.015,0.015],linewidth=0.5,color="black")
+ax2.plot([0,0],[0.015,0.0153],linewidth=0.5,color="black")
+ax2.plot([1,1],[0.015,0.0153],linewidth=0.5,color="black")
+ax2.text(0.42,0.0146, "***", fontsize=12)
+
+ax2.plot([2,3],[0.0132,0.0132],linewidth=0.5,color="black")
+ax2.plot([2,2],[0.0132,0.0135],linewidth=0.5,color="black")
+ax2.plot([3,3],[0.0132,0.0135],linewidth=0.5,color="black")
+ax2.text(2.42,0.0128, "***", fontsize=12)
+
 # Add labels and ticks
-ax2.set_ylim(0.0125,0.0225)
-ax2.set_yticks([0.013,0.014,0.015,0.016,0.017,0.018,0.019,0.02,0.021,0.022],[0.013,0.014,0.015,0.016,0.017,0.018,0.019,0.02,0.021,0.022],size=18)
+ax2.set_yticks([0.012,0.014,0.016,0.018,0.02,0.022,0.024,0.026],[0.012,0.014,0.016,0.018,0.02,0.022,0.024,0.026],fontsize=15)
 ax2.yaxis.set_ticks_position('right')
-ax2.set_xticks([0,1,2,3],['RF','DRF','RFX','DRFX'],fontsize=18)
-
-# Manually add results for the t-test
-ax1.plot([0,2],[0.0246,0.0246],linewidth=0.5,color="black")
-ax1.plot([0,0],[0.0246,0.0244],linewidth=0.5,color="black")
-ax1.plot([2,2],[0.0246,0.0244],linewidth=0.5,color="black")
-ax1.text(0.92, 0.0247, "o", fontsize=12)
-
-ax1.plot([0,1],[0.0169,0.0169],linewidth=0.5,color="black")
-ax1.plot([0,0],[0.0169,0.0171],linewidth=0.5,color="black")
-ax1.plot([1,1],[0.0169,0.0171],linewidth=0.5,color="black")
-ax1.text(0.42, 0.0166, "***", fontsize=12)
-
-ax1.plot([2,3],[0.0166,0.0166],linewidth=0.5,color="black")
-ax1.plot([2,2],[0.0166,0.0168],linewidth=0.5,color="black")
-ax1.plot([3,3],[0.0166,0.0168],linewidth=0.5,color="black")
-ax1.text(2.42, 0.0163, "***", fontsize=12)
-
-ax2.plot([0,2],[0.0218,0.0218],linewidth=0.5,color="black")
-ax2.plot([0,0],[0.0218,0.0216],linewidth=0.5,color="black")
-ax2.plot([2,2],[0.0218,0.0216],linewidth=0.5,color="black")
-ax2.text(0.92,0.0218, "***", fontsize=12)
-
-ax2.plot([0,1],[0.0158,0.0158],linewidth=0.5,color="black")
-ax2.plot([0,0],[0.0158,0.016],linewidth=0.5,color="black")
-ax2.plot([1,1],[0.0158,0.016],linewidth=0.5,color="black")
-ax2.text(0.42,0.0155, "***", fontsize=12)
-
-ax2.plot([2,3],[0.014,0.014],linewidth=0.5,color="black")
-ax2.plot([2,2],[0.014,0.0142],linewidth=0.5,color="black")
-ax2.plot([3,3],[0.014,0.0142],linewidth=0.5,color="black")
-ax2.text(2.42,0.0137, "***", fontsize=12)
+ax2.set_xticks([0,1,2,3],['RF','DRF','RFX','DRFX'],fontsize=15)
 
 # Save
 plt.savefig("out/results_main_plot.eps",dpi=300,bbox_inches="tight")
@@ -242,7 +242,7 @@ plt.subplots_adjust(wspace=0.01,hspace=0.35)
 # Fill each subplot with a shape, starting from the last country in dangerous
 for c,i,j in zip(range(1,21),[0,0,0,0,1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4],[0,1,2,3,0,1,2,3,0,1,2,3,0,1,2,3,0,1,2,3]):
     # Access observations from below (-c) to get most dangerous and plot in subplot
-    axs[i, j].plot(dangerous["shape"].iloc[-c],color="black")
+    axs[i, j].plot(dangerous["shape"].iloc[-c],color="black",linewidth=3)
     axs[i, j].set_yticks([],[])
     axs[i, j].set_xticks([],[])
     axs[i, j].set_axis_off()
@@ -271,7 +271,7 @@ plt.subplots_adjust(wspace=0.01,hspace=0.35)
 # Fill in each subplot with a shape in harmless
 for c,i,j in zip(range(0,20),[0,0,0,0,1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4],[0,1,2,3,0,1,2,3,0,1,2,3,0,1,2,3,0,1,2,3]):
     # Access observation and plot in subplot
-    axs[i, j].plot(harmless["shape"].iloc[c],color="black")
+    axs[i, j].plot(harmless["shape"].iloc[c],color="black",linewidth=3)
     axs[i, j].set_yticks([],[])
     axs[i, j].set_xticks([],[])
     axs[i, j].set_axis_off()
@@ -330,7 +330,7 @@ plt.subplots_adjust(wspace=0.01,hspace=0.35)
 # Fill each subplot with a shape, starting from the last country in dangerous
 for c,i,j in zip(range(1,21),[0,0,0,0,1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4],[0,1,2,3,0,1,2,3,0,1,2,3,0,1,2,3,0,1,2,3]):
     # Access observations from below (-c) to get most dangerous and plot in subplot
-    axs[i, j].plot(dangerous["shape"].iloc[-c],color="black")
+    axs[i, j].plot(dangerous["shape"].iloc[-c],color="black",linewidth=3)
     axs[i, j].set_yticks([],[])
     axs[i, j].set_xticks([],[])
     axs[i, j].set_axis_off()
@@ -359,7 +359,7 @@ plt.subplots_adjust(wspace=0.01,hspace=0.35)
 # Fill in each subplot with a shape in harmless
 for c,i,j in zip(range(0,20),[0,0,0,0,1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4],[0,1,2,3,0,1,2,3,0,1,2,3,0,1,2,3,0,1,2,3]):
     # Access observation and plot in subplot   
-    axs[i, j].plot(harmless["shape"].iloc[c],color="black")
+    axs[i, j].plot(harmless["shape"].iloc[c],color="black",linewidth=3)
     axs[i, j].set_yticks([],[])
     axs[i, j].set_xticks([],[])
     axs[i, j].set_axis_off()

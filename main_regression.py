@@ -197,9 +197,9 @@ for k in [3,5,7]:
         # Plot centroids
         
         # Specify plot 
-        plt.figure(figsize=(10, 6))
+        plt.figure(figsize=(11, 6))
         plt.tight_layout()
-        plt.subplots_adjust(wspace=0.01)
+        plt.subplots_adjust(wspace=0.1)
         
         # Loop over each centroid
         for i, seq in enumerate(centroids):
