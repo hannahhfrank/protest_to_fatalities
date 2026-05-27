@@ -133,20 +133,21 @@ ax1.errorbar([0,1,2,3],[df_linear["mse_ols"].mean(),df_linear["mse_dols"].mean()
 ax1.plot([0,2],[0.025,0.025],linewidth=0.5,color="black")
 ax1.plot([0,0],[0.025,0.0247],linewidth=0.5,color="black")
 ax1.plot([2,2],[0.025,0.0247],linewidth=0.5,color="black")
-ax1.text(0.92, 0.0251, "o", fontsize=12)
+ax1.text(0.92, 0.02506, "o", fontsize=12)
 
 ax1.plot([0,1],[0.016,0.016],linewidth=0.5,color="black")
 ax1.plot([0,0],[0.016,0.0163],linewidth=0.5,color="black")
 ax1.plot([1,1],[0.016,0.0163],linewidth=0.5,color="black")
-ax1.text(0.42, 0.0156, "***", fontsize=12)
+ax1.text(0.42, 0.0155, "***", fontsize=12)
 
 ax1.plot([2,3],[0.016,0.016],linewidth=0.5,color="black")
 ax1.plot([2,2],[0.016,0.0163],linewidth=0.5,color="black")
 ax1.plot([3,3],[0.016,0.0163],linewidth=0.5,color="black")
-ax1.text(2.42, 0.0156, "***", fontsize=12)
+ax1.text(2.42, 0.0155, "***", fontsize=12)
 
 # Add labels and ticks
-ax1.set_yticks([0.012,0.014,0.016,0.018,0.02,0.022,0.024,0.026],[0.012,0.014,0.016,0.018,0.02,0.022,0.024,0.026],fontsize=15)
+ax1.set_yticks([0.01,0.012,0.014,0.016,0.018,0.02,0.022,0.024,0.026,0.028],[0.01,0.012,0.014,0.016,0.018,0.02,0.022,0.024,0.026,0.028],fontsize=15)
+#ax1.set_ylim([0.011,0.027])
 ax1.set_ylabel("Mean squared error (MSE)",size=22)
 ax1.set_xticks([0,1,2,3],['RR','DRR','RRX','DRRX'],fontsize=15)
 
@@ -162,20 +163,21 @@ ax2.errorbar([0,1,2,3],[df_nonlinear["mse_rf"].mean(),df_nonlinear["mse_drf"].me
 ax2.plot([0,2],[0.0223,0.0223],linewidth=0.5,color="black")
 ax2.plot([0,0],[0.0223,0.022],linewidth=0.5,color="black")
 ax2.plot([2,2],[0.0223,0.022],linewidth=0.5,color="black")
-ax2.text(0.92,0.02225, "***", fontsize=12)
+ax2.text(0.92,0.02219, "***", fontsize=12)
 
 ax2.plot([0,1],[0.015,0.015],linewidth=0.5,color="black")
 ax2.plot([0,0],[0.015,0.0153],linewidth=0.5,color="black")
 ax2.plot([1,1],[0.015,0.0153],linewidth=0.5,color="black")
-ax2.text(0.42,0.0146, "***", fontsize=12)
+ax2.text(0.42,0.0145, "***", fontsize=12)
 
 ax2.plot([2,3],[0.0132,0.0132],linewidth=0.5,color="black")
 ax2.plot([2,2],[0.0132,0.0135],linewidth=0.5,color="black")
 ax2.plot([3,3],[0.0132,0.0135],linewidth=0.5,color="black")
-ax2.text(2.42,0.0128, "***", fontsize=12)
+ax2.text(2.42,0.0127, "***", fontsize=12)
 
 # Add labels and ticks
-ax2.set_yticks([0.012,0.014,0.016,0.018,0.02,0.022,0.024,0.026],[0.012,0.014,0.016,0.018,0.02,0.022,0.024,0.026],fontsize=15)
+ax2.set_yticks([0.01,0.012,0.014,0.016,0.018,0.02,0.022,0.024,0.026,0.028],[0.01,0.012,0.014,0.016,0.018,0.02,0.022,0.024,0.026,0.028],fontsize=15)
+#ax2.set_ylim([0.011,0.027])
 ax2.yaxis.set_ticks_position('right')
 ax2.set_xticks([0,1,2,3],['RF','DRF','RFX','DRFX'],fontsize=15)
 

@@ -1,5 +1,5 @@
 # Set working directory and load packages
-setwd('/Users/hannahfrank/phd_thesis_reconceptualizing_conflict_emergence/protest')
+setwd('/Users/hannahfrank/protest_to_fatalities')
 library(sandwich)
 library(stargazer)
 library(lmtest)
@@ -185,4 +185,97 @@ stargazer(cl_robust1, cl_robust2, cl_robust3, cl_robust4, cl_robust5,  # Models
           out = "out/regression_results.tex")
 
 
+# Multinomial logistic regression
+library(nnet)
+library(sjPlot)
+library(dplyr)
+df <- read.csv('data/final_shapes_s.csv')
 
+# Remove missing values
+miss <- is.na(df$n_protest_events_norm_lag_1 ) |
+  is.na(df$n_protest_events_norm_lag_2) |
+  is.na(df$n_protest_events_norm_lag_3) |
+  is.na(df$fatalities_log_lag1) 
+df <- subset(df, subset = !miss)
+
+df$clusters_cen <- factor(df$clusters_cen)
+df$clusters_cen <- relevel(df$clusters_cen, ref = 4)
+model <- multinom(clusters_cen ~            
+                    fatalities_log_lag1 +
+                    NY.GDP.PCAP.CD_log +
+                    SP.POP.TOTL_log +
+                    v2x_libdem +
+                    v2x_clphy +
+                    v2x_corr +
+                    v2x_rule +
+                    v2x_civlib +
+                    v2x_neopat, data = df)
+summary(model)
+
+z <- summary(model)$coefficients / summary(model)$standard.errors
+p <- 2 * (1 - pnorm(abs(z)))
+p
+
+plot_model(model, type = "est", transform = NULL, show.values = TRUE, value.offset = 0.3, p.style = TRUE)
+
+
+df <- read.csv('data/final_shapes_s.csv')
+
+# Remove missing values
+miss <- is.na(df$n_protest_events_norm_lag_1 ) |
+  is.na(df$n_protest_events_norm_lag_2) |
+  is.na(df$n_protest_events_norm_lag_3) |
+  is.na(df$fatalities_log_lag1) 
+df <- subset(df, subset = !miss)
+
+df$clusters_cen <- factor(df$clusters_cen)
+model <- multinom(clusters_cen ~            
+                    fatalities_log_lag1 +
+                    NY.GDP.PCAP.CD_log +
+                    SP.POP.TOTL_log +
+                    v2x_libdem +
+                    v2x_clphy +
+                    v2x_corr +
+                    v2x_rule +
+                    v2x_civlib +
+                    v2x_neopat, data = df)
+
+plot_model(model, type = "pred", terms = "fatalities_log_lag1", ci.lvl = 0.95)
+
+# Interaction
+df <- read.csv('data/final_shapes_s.csv')
+
+# Remove missing values
+miss <- is.na(df$n_protest_events_norm_lag_1 ) |
+  is.na(df$n_protest_events_norm_lag_2) |
+  is.na(df$n_protest_events_norm_lag_3) |
+  is.na(df$fatalities_log_lag1) 
+df <- subset(df, subset = !miss)
+
+df$clusters_cen <- factor(df$clusters_cen)
+df$clusters_cen <- relevel(df$clusters_cen, ref = 4)
+
+m_int <- lm(fatalities_log ~ clusters_cen + 
+            fatalities_log_lag1 +
+            clusters_cen*fatalities_log_lag1 +
+            NY.GDP.PCAP.CD_log +
+            SP.POP.TOTL_log +
+            v2x_libdem +
+            v2x_clphy +
+            v2x_corr +
+            v2x_rule +
+            v2x_civlib +
+            v2x_neopat, data = df)
+summary(m_int)
+
+plot_model(
+  m_int,
+  type = "int",
+  terms = c("clusters_cen", "fatalities_log_lag1")
+)
+
+plot_model(
+  m_int,
+  type = "pred",
+  terms = c("fatalities_log_lag1", "clusters_cen")
+)
